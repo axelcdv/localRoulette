@@ -41,7 +41,7 @@ var data = {
 // GET
 
 exports.random = function(req, res) {
-		var from_id = req.params.id;
+		var from_id = req.query.id;
 		var to_id = -1;
 		while( to_id == -1 || to_id == from_id || !data.users[to_id].available ) {
 				to_id = Math.floor(Math.random() * data.users.length);
