@@ -2,8 +2,14 @@ extends layout
 
 block body
 	h3 Local roulette
+	div
+		span#id 0
+		div
+			input#chid
+			button#change Change
 	button#random Random 
 	div
 		span#to_id Random id
 		input#message(type=text)
 		button#send Send
+	div#messages

@@ -4,7 +4,8 @@
 
 var express = require('express'),
 	routes = require('./routes'),
-	api = require('./routes/api');
+	api = require('./routes/api'),
+	events = require('events');
 
 var app = module.exports = express();
 
@@ -43,10 +44,40 @@ app.get('/random', api.random);
 io.sockets.on('connection', function( socket ) {
 		socket.on('message', function( message ) {
 				console.log( message );
+				if (io.socketsById[message.to]) {
+					console.log( "Socket exists, sending message" );
+						message = api.saveMessage( message );
+						if (message !== null) {
+							io.socketsById[message.to].emit( 'message', message );
+						}
+				}
+		});
+
+		socket.on('set id', function( id ) {
+			console.log( "Set id: " + id.id );
+				socket.set('id', id.id, function() {
+					if (!io.socketsById) {
+							io.socketsById = {};
+					}
+					io.socketsById[id.id] = socket;
+					console.log('Id set');
+
+					socket.emit('ready');
+				});
+		});
+	
+		// When the user disconnects, remove the socket to prevent messages to be sent to closed sockets
+		socket.on('disconnect', function() {
+			socket.get('id', function(err, id) {
+				if (id) {
+					delete io.socketsById[id];
+				}
+			});
+				//delete io.socketsById[socket.get('id')];
 		});
 });
 
 // Start server
 
-var port = 3000 || ENV.port; 
+var port = 3000 || ENV.port;
 server.listen( port );

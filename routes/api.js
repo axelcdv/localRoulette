@@ -36,7 +36,18 @@ var data = {
 				"timestamp": 1373450030855
 		}
 		]
-}
+};
+
+exports.saveMessage = function( message ) {
+		console.log("Saving message...");
+		console.log( message );
+		if (message && (message.to || message.to === 0) && (message.from || message.from === 0) && message.body) {
+				console.log('inside');
+				message.timestamp = (new Date()).getTime();
+				data.messages.push( message );
+				return message;
+		}
+};
 
 // GET
 
