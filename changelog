@@ -1,7 +1,7 @@
 This one:
+Done:
 - Shake functionality: watch for shake on the client, sends 'random' event,
 receive and process reply. Process and reply to 'random' event on the server
-Done:
 - switched to latest dev versions of underscore and backbone
 - send and receive messages with socket.io + save and view them
 - messages classified left/right according to id
