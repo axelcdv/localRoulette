@@ -131,6 +131,7 @@ textarea#msg-body {
 		resize: none;
 		margin: 0;
 		height: 100%;
+		border: none;
 		/*border-right: solid 0 black;
 		border-left: solid 0 black; 
 		border-top: solid 1px black;

@@ -25,6 +25,7 @@ define([
 					});
 
 					Events.on('shake', function( id, callback ) {
+						console.log("Socket emitting random messsage");
 						socket.emit('random', id, function ( response ) {
 							callback(response);
 						});

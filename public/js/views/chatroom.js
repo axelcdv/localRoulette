@@ -32,7 +32,7 @@ define([
 
 					// Trigger new random target when the user shakes
 					Shake.startWatch( function() {
-							console.log("Shaked");
+							console.log("chatroom: Shaked");
 							Events.trigger("shake", this.collection.id, function ( response ) {
 								if (response && response.id) {
 									this.collection.changeTarget(response.id);
