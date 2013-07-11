@@ -20,25 +20,19 @@ define([
 					'submit': 'sendMessage',
 					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
-					'keypress textarea[type=text]': 'submitOnEnter',
+					'keypress textarea[type=text]': 'submitOnEnter'
 			},
 			initialize: function(options) {
 					this.collection = new ChatroomCollection({ id: options.id });
 					console.log(this.collection);
-					this.el = options.el || '.ui-content';
-					this.collection.fetch({ reset: true });
+					this.el = options.el || '.content';
+					//this.collection.fetch({ reset: true });
 					this.collection.on('add', this.addOneScroll, this);
 					this.collection.on('reset', this.resetEvent, this);
-					
-					Events.on('message', function (message) {
-							console.log("Chatroom got message event, " + message.room_id);
-							console.log( message );
-							if ( message.room_id && message.room_id === this.collection.id ) {
-									this.collection.add( message );
-							}
-					}, this);
 
 					Shake.startWatch( function() { alert("shaked"); } ); // Test function
+
+					this.render();
 			},
 			render: function() {
 					console.log("Rendering chatroom");
@@ -50,6 +44,10 @@ define([
 							}
 					});
 					this.$el.html( this.template( { id: this.collection.id } ) );
+					this.$el.css('margin-top', $('.header').height()) // Should use class instead of id
+                            .css('margin-bottom', $('.header').height())   // Assuming footer size ~= header size for now
+                            .css('padding-top', '0.5%')
+                            .css('padding-bottom', '0.5%');
 					this.delegateEvents( this.events );
 					this.collection.forEach(this.addOne, this);
 					$("html, body").animate({ scrollTop: $(document).height() }, "slow",
@@ -59,9 +57,9 @@ define([
 			addOne: function(message) {  // TODO: really use 'reset' event upon entering chatroom
 					console.log("Add one");
 					var attributes = message.attributes;
-					if (!(attributes && ((attributes.from && attributes.from !== "")
-												   	|| (attributes.body && attributes.body !== "")
-												   	|| attributes.timestamp ))) {
+					if (!(attributes && ((attributes.from && attributes.from !== "") ||
+												(attributes.body && attributes.body !== "") ||
+												attributes.timestamp ))) {
 								console.log("No attributes or empty field(s)");
 								return;
 					}
@@ -81,18 +79,24 @@ define([
 			},
 			sendMessage: function(e) {
 					e.preventDefault();
-					Events.trigger('sendMessage', {
-							'from': Api.username,
-							'body': $('textarea[name=body]').val(), 
-							'room_id': this.collection.id,
+					console.log("Will create with: ");
+					console.log({
+						'from': this.collection.id || 1,
+						'to': this.collection.to || 2,
+						'body': $('textarea[name=body]').val()
 					});
+					this.collection.create({
+						'from': this.collection.id || 1,
+						'to': this.collection.to || 2,
+						'body': $('textarea[name=body]').val()
+					}, { wait: true });
 					$('textarea[name=body]').val("");
 			},
 			resetEvent: function(e) {
 					console.log("Chatroom collection reset");
 					this.render();
 			},
-		 	clean: function() {
+			clean: function() {
 					this.collection.off(null, null, this);
 					this.undelegateEvents();
 					Shake.stopWatch();

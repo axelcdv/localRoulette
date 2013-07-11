@@ -73,3 +73,5 @@ www-abs
 toremove
 *.backup
 backup
+*.sublime-*
+changelog
