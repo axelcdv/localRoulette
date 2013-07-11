@@ -3,12 +3,12 @@
 require.config({
 		paths:{
 				jquery: 'libs/jquery/jquery-min',
-				underscore: 'libs/underscore/underscore-min',
-				backbone: 'libs/backbone/backbone-min',
+				underscore: 'libs/underscore/underscore',
+				backbone: 'libs/backbone/backbone',
 				text: 'libs/require/text',
-//				cordova: 'libs/cordova/cordova-ios',
+				cordova: 'libs/cordova/cordova-ios',
 //				cordova: 'libs/cordova/cordova-android',
-				cordova: 'libs/cordova/cordova-empty',
+//				cordova: 'libs/cordova/cordova-empty',
 				socketio: 'libs/socket.io/socket-client.io'
 		},
 		shim: {

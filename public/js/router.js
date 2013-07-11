@@ -11,7 +11,8 @@ define([
 
 			var AppRouter = Backbone.Router.extend({
 					routes: {
-						'*other': 'index'		
+							'chat': 'chat',
+						'*other': 'chat'		
 					}
 			});
 
@@ -21,6 +22,16 @@ define([
 
 				router.on('route:index', function() {
 						//appView.render();
+				});
+
+				router.on('route:chat', function() {
+						require(['views/chatroom'], function( ChatroomView ) {
+								var chatroomView = Vm.create(appView,
+										'ChatroomView',
+										ChatroomView,
+										{ el: '.content' }
+										);
+						});
 				});
 
 				Backbone.history.start({ pushState: false });

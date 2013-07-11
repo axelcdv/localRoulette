@@ -38,6 +38,11 @@ var data = {
 		]
 };
 
+// TODO determine if a user is available
+var isAvailable = function(id) {
+	return true;
+};
+
 exports.saveMessage = function( message ) {
 		console.log("Saving message...");
 		console.log( message );
@@ -49,14 +54,19 @@ exports.saveMessage = function( message ) {
 		}
 };
 
-// GET
-
-exports.random = function(req, res) {
-		var from_id = req.query.id;
+exports.getRandomId = function( from_id ) {
 		var to_id = -1;
 		while( to_id == -1 || to_id == from_id || !data.users[to_id].available ) {
 				to_id = Math.floor(Math.random() * data.users.length);
 		}
+		return to_id;
+};
+
+// GET
+
+exports.random = function(req, res) {
+		var from_id = req.query.id;
+		var to_id = this.getRandomId(from_id);
 		res.json({
 				id: to_id
 		});
