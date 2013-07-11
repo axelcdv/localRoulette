@@ -1,0 +1,245 @@
+body {
+		font-family: 'Titillium Web', sans-serif;
+		background-color: #fbfaf6;
+		margin: 0;
+}
+
+.pull-left {
+		float: left;
+}
+
+.pull-right {
+		float: right;
+}
+
+.hidden {
+		visibility: hidden;
+}
+
+#app {
+		padding: 0.5% 5% 0.5% 5%;
+}
+
+/*************
+ * HEADER
+ * **********/
+
+.header {
+		background: #ffb400;
+		height: 12%;
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 10;
+}
+
+.header-btn {
+		display: inline-block;
+		cursor: hand;
+		cursor: pointer;
+		width: 10%;
+		height: 100%;
+}
+
+.back-btn {
+		background: #ffb400 url('../img/back-icon.png') no-repeat center center;
+		background-size: 30%;
+		float: left;
+}
+
+.people-btn {
+		background: #ffb400 url('../img/people-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: right;
+}
+
+.plus-btn {
+		background: #ffb400 url('../img/plus-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: left;
+}
+
+.settings-btn {
+		background: #ffb400 url('../img/settings-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: right;
+}
+
+.vr {
+		border-right: 1px solid #e98900;
+		display: inline-block;
+		height: 100%;
+}
+
+.header-title {
+		height: 100%;
+		width: 79%;
+		float: left;
+		padding: 0;
+		text-align: center;
+		position: relative;
+		display: table;
+}
+
+.header-title-inner {
+		display: table-cell;
+		vertical-align: middle;
+}
+
+.header-title h3 {
+		color: white;
+		margin: 5px 0 5px 0;
+}
+
+/**************
+ * FOOTER
+ * ***********/
+
+.footer {
+		background: #ffb400;
+		height: 12%;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		left: 0;
+}
+
+.photo-btn {
+		background: #373737 url('../img/photo-icon.png') center center;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		float: left;
+}
+
+.send-btn {
+		float: right;
+		text-align: center;
+		background: #ffb400 url('../img/send-icon.png') center center;
+		background-size: 100% 100%;
+}
+
+.send-btn h3 {
+		display: inline-block;
+		margin-top: 10%;
+		color: white;
+}
+
+/* TODO: ok, switch to class instead of ids */
+textarea#msg-body {
+		width: 79%;
+		resize: none;
+		margin: 0;
+		height: 100%;
+		border: none;
+		/*border-right: solid 0 black;
+		border-left: solid 0 black; 
+		border-top: solid 1px black;
+		border-bottom: 0px; */
+}
+
+/****************
+ * MESSAGES
+ ***************/
+
+
+.messages {
+		/*padding: 10% 5% 10% 5%;*/
+}
+
+.message-right, .message-left {
+		margin: 1px 0 1px 0;
+		overflow: hidden;
+}
+
+.message-right {
+		overflow: hidden;
+}
+.message-right div, .message-left div {
+		display: inline-block;
+}
+
+.message-right .msg-pic {
+		float: right;
+}
+
+.message-left .msg-pic {
+		float: left;
+}
+
+.message-right .msg-content {
+		text-align: right;
+		float: right;
+		max-width: 80%;
+		margin-right: 2px;
+}
+
+.message-right .msg-content p {
+		background-color: #def5fb;
+		padding: 2px 5px 2px 5px;
+		margin: 1px 0 1px 0;
+}
+
+.message-left .msg-content {
+		max-width: 80%;
+		margin-right: 2px;
+}
+
+.message-left .msg-content p {
+		background-color: #fbf1de;
+		margin: 1px 0 1px 0;
+		padding: 2px 5px 2px 5px;
+}
+
+h4.msg-from {
+		margin: 0 2px 1px 2px;
+}
+
+.msg-pic img {
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+}
+
+/**************
+ * CHATROOMS
+ * ***********/
+
+/*.rooms {
+		/*padding: 10% 5% 10% 5%;
+} */
+
+.meta-room {
+		background-color: #def5fb;
+		overflow: hidden;
+		margin: 2px 0 2px 0;
+}
+
+.meta-room:hover {
+		background-color: #3dd2f9;
+}
+
+.meta-room-inner {
+		overflow: hidden;
+}
+
+.meta-room-inner div {
+		display: inline-block;
+}
+
+.room-pic, .room-go {
+		margin: 0.5em;
+}
+
+.room-pic, .room-go img {
+		border: solid 1px black;
+}
+
+.room-go {
+		cursor: hand;
+		cursor: pointer;
+}
+
+.room-desc h4, p {
+		margin: 0.5em 0 0.5em 0;
+}
