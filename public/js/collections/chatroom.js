@@ -36,6 +36,11 @@ define([
 								}
 							}, this);
 					},
+
+					changeTarget: function(newId) {
+						this.to = newId;
+					},
+					/*
 					parse: function(response){
 							console.log("Parsing response");
 							console.log(response);
@@ -51,6 +56,7 @@ define([
 								console.log("Error: received different room id");
 							return response.messages;
 					},
+					*/
 					clean: function() {
 						Events.off(null, null, this);
 					}

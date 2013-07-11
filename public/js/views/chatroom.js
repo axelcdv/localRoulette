@@ -30,7 +30,15 @@ define([
 					this.collection.on('add', this.addOneScroll, this);
 					this.collection.on('reset', this.resetEvent, this);
 
-					Shake.startWatch( function() { alert("shaked"); } ); // Test function
+					// Trigger new random target when the user shakes
+					Shake.startWatch( function() {
+							console.log("Shaked");
+							Events.trigger("shake", this.collection.id, function ( response ) {
+								if (response && response.id) {
+									this.collection.changeTarget(response.id);
+								}
+							});
+						});
 
 					this.render();
 			},

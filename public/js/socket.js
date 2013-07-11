@@ -24,6 +24,12 @@ define([
 							});
 					});
 
+					Events.on('shake', function( id, callback ) {
+						socket.emit('random', id, function ( response ) {
+							callback(response);
+						});
+					});
+
 					var addListener = function (eventListened, fun) {
 							// TODO check arguments, maybe package fun
 							socket.on(eventListened, fun);

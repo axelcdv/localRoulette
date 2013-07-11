@@ -84,6 +84,11 @@ io.sockets.on('connection', function( socket ) {
 					socket.emit('ready');
 				});
 		});
+
+		socket.on('random', function( id, callback ) {
+			var randId = api.getRandomId(id);
+			callback(randId);
+		});
 	
 		// When the user disconnects, remove the socket to prevent messages to be sent to closed sockets
 		socket.on('disconnect', function() {
@@ -92,7 +97,6 @@ io.sockets.on('connection', function( socket ) {
 					delete io.socketsById[id];
 				}
 			});
-				//delete io.socketsById[socket.get('id')];
 		});
 });
 
